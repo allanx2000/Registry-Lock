@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BrowserLock.Models
 {
+    [Serializable]
     public class Folder : IData
     {
         public string Name { get; set; }

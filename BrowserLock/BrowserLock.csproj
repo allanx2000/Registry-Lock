@@ -59,8 +59,16 @@
     <Compile Include="Checkers\BrowserChecker.cs" />
     <Compile Include="Checkers\PathChecker.cs" />
     <Compile Include="Checkers\RegistryUtil.cs" />
+    <Compile Include="EditLockWindow.xaml.cs">
+      <DependentUpon>EditLockWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ChangesViewModel.cs" />
-    <Compile Include="ViewModels\ExtensionInfoViewModel.cs" />
+    <Compile Include="ViewModels\EditLockWindowViewModel.cs" />
+    <Compile Include="ViewModels\RuleViewModel.cs" />
+    <Page Include="EditLockWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,7 +77,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CheckersRepo.cs" />
+    <Compile Include="AppState.cs" />
     <Compile Include="Checkers\IChecker.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -78,7 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="Models\ExtensionInfo.cs" />
+    <Compile Include="Models\RuleInfo.cs" />
     <Compile Include="Models\Folder.cs" />
     <Compile Include="Models\IData.cs" />
     <Compile Include="Models\Value.cs" />

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BrowserLock"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Registry Tracker" Height="600" Width="550">
     <Grid>
         <Grid.Resources>
             <Style x:Key="Field" TargetType="Label">
@@ -22,6 +22,8 @@
         </Grid.RowDefinitions>
 
         <GroupBox Header="Changed">
+            <ListBox ItemsSource="{Binding Changes}" SelectedItem="{Binding SelectedChange}">
+            </ListBox>
         </GroupBox>
 
         <Grid Grid.Row="1">
@@ -31,16 +33,16 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button>Diff</Button>
-                <Button>Restore</Button>
-                <Button>Allow</Button>
+                <Button IsEnabled="{Binding ChangeSelected}" Command="{Binding DiffCommand}">Diff</Button>
+                <Button IsEnabled="{Binding ChangeSelected}" Command="{Binding RestoreCommand}">Restore</Button>
+                <Button IsEnabled="{Binding ChangeSelected}" Command="{Binding AllowCommand}">Allow</Button>
             </StackPanel>
 
-            <Button Grid.Column="2" HorizontalAlignment="Right">Restore All</Button>
+            <Button Grid.Column="2" HorizontalAlignment="Right" Command="{Binding RestoreAllCommand}">Restore All</Button>
         </Grid>
 
         <GroupBox Grid.Row="2" Header="Rules">
-            <ListBox>
+            <ListBox ItemsSource="{Binding Rules}" SelectedItem="{Binding SelectedRule}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -53,7 +55,7 @@
                             <StackPanel Grid.Row="0" Orientation="Horizontal">
                                 <Label FontWeight="Bold" Content="{Binding Name}"/>
                                 <Label Width="10"/>
-                                <Label Content="{Binding Key}"/>
+                                <Label Content="{Binding Path}"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Grid.Row="1">
@@ -74,17 +76,18 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="Check For Changes" Command="{Binding CheckCommand}"  HorizontalAlignment="Left"/>
+            <Button Grid.Column="0" Content="Check For Changes" Command="{Binding CheckChangesCommand}"  
+                    HorizontalAlignment="Left"/>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button>New</Button>
-                <Button>Edit</Button>
-                <Button>View</Button>
+                <Button IsEnabled="{Binding RuleSelected}" Command="{Binding NewRuleCommand}">New</Button>
+                <Button IsEnabled="{Binding RuleSelected}" Command="{Binding EditRuleCommand}">Edit</Button>
+                <Button IsEnabled="{Binding RuleSelected}" Command="{Binding ViewRuleDataCommand}">View</Button>
             </StackPanel>
 
             <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button >Export</Button>
-                <Button >Import</Button>
+                <Button Command="{Binding ExportCommand}">Export</Button>
+                <Button Command="{Binding ImportCommand}">Import</Button>
             </StackPanel>
             
             

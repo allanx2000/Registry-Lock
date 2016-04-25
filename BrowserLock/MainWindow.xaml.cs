@@ -24,7 +24,7 @@ namespace BrowserLock
         {
             InitializeComponent();
 
-            CheckersRepo.Instance.Test();
+            AppState.Instance.Test();
         }
     }
 }

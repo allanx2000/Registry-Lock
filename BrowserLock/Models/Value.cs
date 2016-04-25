@@ -7,6 +7,7 @@ using Microsoft.Win32;
 
 namespace BrowserLock.Models
 {
+    [Serializable]
     public class Value : IData
     {
         public Value(string name, RegistryValueKind kind, object value)

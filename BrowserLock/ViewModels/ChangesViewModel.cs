@@ -9,9 +9,9 @@ namespace BrowserLock.ViewModels
 {
     class ChangesViewModel
     {
-        private ExtensionInfo current, saved;
+        private RuleInfo current, saved;
 
-        public ChangesViewModel(ExtensionInfo current, ExtensionInfo saved)
+        public ChangesViewModel(RuleInfo current, RuleInfo saved)
         {
             this.current = current;
             this.saved = saved;

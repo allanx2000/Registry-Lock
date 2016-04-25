@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BrowserLock.Models
 {
-    public class ExtensionInfo
+    [Serializable]
+    public class RuleInfo
     {
         public string CheckerId { get; set; }
 
@@ -12,7 +14,7 @@ namespace BrowserLock.Models
         public string Path { get; set; }
         public string Extension { get; set; }
 
-        public ExtensionInfo(string checkerId, string name, List<IData> data)
+        public RuleInfo(string checkerId, string name, List<IData> data)
         {
             this.CheckerId = checkerId;
             this.Data = data;

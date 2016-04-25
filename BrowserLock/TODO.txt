@@ -1,5 +1,4 @@
-﻿Save to XML
-
+﻿Refactor IChecker/Browser logic to have common utils calls to get and write data
 
 Generic Checker/Key Lock
 -Input
