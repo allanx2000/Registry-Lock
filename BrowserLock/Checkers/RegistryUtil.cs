@@ -77,5 +77,10 @@ namespace BrowserLock.Checkers
 
             return key.OpenSubKey(tail);            
         }
+
+        internal static bool IsValid(string path)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,51 @@ namespace BrowserLock.Models
     [Serializable]
     public class Folder : IData
     {
+        private class Props
+        {
+            public const string Name = "Name";
+            public const string Children = "Children";
+        }
+
+        public JObject ToJSON()
+        {
+            JObject obj = new JObject();
+            obj.Add(AppState.DataClassType, ClassType);
+            obj.Add(Props.Name, Name);
+
+            JArray children = new JArray();
+            foreach (var c in Children)
+            {
+                children.Add(c.ToJSON());
+            }
+
+            obj.Add(Props.Children, children);
+
+            return obj;
+        }
+
+        public static Folder Deserialize(JToken obj)
+        {
+            string name = (string) obj[Props.Name];
+            List<IData> data = AppState.DeserializeIData(obj[Props.Children]);
+
+            return new Folder(name, data); 
+        }
+
+        public const string FolderType = "Folder";
+
         public string Name { get; set; }
         public List<IData> Children { get; set; }
+
+        public string ClassType
+        {
+            get
+            {
+                return FolderType;
+            }
+        }
+
+        public Folder() { }
 
         public Folder(string name, List<IData> children)
         {

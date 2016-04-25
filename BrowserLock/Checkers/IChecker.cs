@@ -17,7 +17,7 @@ namespace BrowserLock.Checkers
 
         //Has a Extension value ...
         bool HasExtensions { get; }
-        RuleInfo GetValues(string path);
+        RuleInfo GetValues(string path, string extensions);
         List<string> SupportedExtensions { get; }
         
         void WriteData(RuleInfo data); //Write to Registry, should be pretty standard?

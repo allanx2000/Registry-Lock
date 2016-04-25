@@ -83,7 +83,7 @@ namespace BrowserLock.ViewModels
                     return;
                 case WindowResult.Saved:
                     var rule = window.GetRule();
-                    AppState.Instance.AddNewRule(rule);
+                    //AppState.Instance.AddNewRule(rule);
                     rules.Add(new RuleViewModel(rule));
                     break;
             }
