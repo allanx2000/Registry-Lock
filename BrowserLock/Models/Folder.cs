@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BrowserLock.Models
 {
-    [Serializable]
     public class Folder : IData
     {
+        #region Serialization
         private class Props
         {
             public const string Name = "Name";
@@ -40,6 +40,7 @@ namespace BrowserLock.Models
 
             return new Folder(name, data); 
         }
+        #endregion
 
         public const string FolderType = "Folder";
 
@@ -62,6 +63,7 @@ namespace BrowserLock.Models
             this.Children = children;
         }
 
+        #region Equality
         public override int GetHashCode()
         {
             return Name.GetHashCode();
@@ -94,5 +96,6 @@ namespace BrowserLock.Models
 
             return true;
         }
+        #endregion
     }
 }

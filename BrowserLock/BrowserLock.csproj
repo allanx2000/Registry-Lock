@@ -66,7 +66,6 @@
     <Compile Include="EditLockWindow.xaml.cs">
       <DependentUpon>EditLockWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ChangesViewModel.cs" />
     <Compile Include="ViewModels\EditLockWindowViewModel.cs" />
     <Compile Include="ViewModels\RuleViewModel.cs" />
     <Compile Include="ViewModels\WindowResult.cs" />

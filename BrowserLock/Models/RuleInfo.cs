@@ -4,18 +4,9 @@ using System.Collections.Generic;
 
 namespace BrowserLock.Models
 {
-    [Serializable]
     public class RuleInfo
     {
-        public string CheckerId { get; set; }
-
-        //First is Folder with full path
-        public List<IData> Data { get; set; }
-        public string Name { get; set; }
-        public string Path { get; set; }
-        public string Extension { get; set; }
-        public int ID { get; set; }
-
+        #region Serialization
         private static class Props
         {
             public const string ID = "ID";
@@ -74,6 +65,17 @@ namespace BrowserLock.Models
 
             return obj;
         }
+        #endregion
+
+        public string CheckerId { get; set; }
+
+        //First is Folder with full path
+        public List<IData> Data { get; set; }
+        public string Name { get; set; }
+        public string Path { get; set; }
+        public string Extension { get; set; }
+        public int ID { get; set; }
+
 
         public RuleInfo()
         { }
@@ -83,6 +85,11 @@ namespace BrowserLock.Models
             this.CheckerId = checkerId;
             this.Data = data;
             this.Name = name;
+        }
+
+        public RuleInfo(string checkerId, string name, Folder folder) 
+            : this(checkerId, name, new List<IData>() { folder })
+        {
         }
     }
 }

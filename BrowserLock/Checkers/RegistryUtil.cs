@@ -8,13 +8,33 @@ using Microsoft.Win32;
 
 namespace BrowserLock.Checkers
 {
-    public class RegistryUtil
+    public static class RegistryUtil
     {
         static RegistryUtil()
         {
         }
 
-        public static List<IData> GetData(RegistryKey key)
+
+        /// <summary>
+        /// Gets the data in a given path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static Folder GetData(string path)
+        {
+            RegistryKey key = RegistryUtil.GetKey(path);
+
+            Folder folder = new Folder(path, RegistryUtil.GetData(key));
+
+            return folder;
+        }
+
+        /// <summary>
+        /// Recursive call to gets all Folders and Values from a Key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        private static List<IData> GetData(RegistryKey key)
         {
             List<IData> data = new List<IData>();
 
@@ -46,6 +66,11 @@ namespace BrowserLock.Checkers
         private const string HKEY_USERS = "HKEY_USERS";
         private const string HKEY_CURRENT_CONFIG = "HKEY_CURRENT_CONFIG";
 
+        /// <summary>
+        /// Gets the RegistryKey for the path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static RegistryKey GetKey(string path)
         {
             int splitAt = path.IndexOf("\\");
@@ -78,9 +103,16 @@ namespace BrowserLock.Checkers
             return key.OpenSubKey(tail);            
         }
 
-        internal static bool IsValid(string path)
+        public static bool IsValid(string path)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return GetKey(path) != null;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

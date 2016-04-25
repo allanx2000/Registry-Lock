@@ -8,9 +8,9 @@ using Newtonsoft.Json.Linq;
 
 namespace BrowserLock.Models
 {
-    [Serializable]
     public class Value : IData
     {
+        #region Serialization
         private class Props
         {
             public static string Name = "Name";
@@ -26,7 +26,7 @@ namespace BrowserLock.Models
             var value = new Value()
             {
                 Name = name,
-                ValueType = type,
+                DataType = type,
                 Data = data
             };
             
@@ -40,11 +40,11 @@ namespace BrowserLock.Models
             obj.Add(AppState.DataClassType, ClassType);
             obj.Add(Props.Name, Name);
             obj.Add(Props.Data, Data);
-            obj.Add(Props.Type, ValueType);
+            obj.Add(Props.Type, DataType);
 
             return obj;
         }
-
+        #endregion
 
         public const string classType = "Value";
 
@@ -61,7 +61,7 @@ namespace BrowserLock.Models
         public Value(string name, RegistryValueKind kind, object value)
         {
             Name = name;
-            ValueType = kind.ToString();
+            DataType = kind.ToString();
             Data = GetValue(kind, value);
         }
 
@@ -78,13 +78,13 @@ namespace BrowserLock.Models
 
         public string Name { get; set; } //Key
         public string Data {get; set;}
-        public string ValueType {get; set;}
+        public string DataType {get; set;}
 
         public override int GetHashCode()
         {
             return Name.GetHashCode() * 3
                 + Data.GetHashCode() * 7
-                + ValueType.GetHashCode() * 11;
+                + DataType.GetHashCode() * 11;
         }
 
         public override bool Equals(object obj)
