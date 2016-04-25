@@ -23,6 +23,8 @@ namespace BrowserLock
         public MainWindow()
         {
             InitializeComponent();
+
+            CheckersRepo.Instance.Test();
         }
     }
 }

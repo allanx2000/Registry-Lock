@@ -1,0 +1,11 @@
+﻿Save to XML
+
+
+Generic Checker/Key Lock
+-Input
+	Root path
+
+-Checker
+	-Get base RegistryKey by using a switch on the first section of the key
+		-validate keys are valid, switch (HKCU, HKLM, etc)
+		-validate key exists

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BrowserLock
+namespace BrowserLock.ViewModels
 {
-    class Checker
+    class ExtensionInfoViewModel
     {
     }
 }

@@ -7,50 +7,91 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
+        <Grid.Resources>
+            <Style x:Key="Field" TargetType="Label">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+        </Grid.Resources>
+
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <GroupBox Header="Current">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Label Grid.Row="0" Grid.Column="0">HTTP:</Label>
-
-                <Label Grid.Row="1" Grid.Column="0">HTTPS:</Label>
-
-            </Grid>
+        <GroupBox Header="Changed">
         </GroupBox>
 
-        <Button Grid.Row="1" Content="{Binding LockText, FallbackValue=Lock}" HorizontalAlignment="Center" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button>Diff</Button>
+                <Button>Restore</Button>
+                <Button>Allow</Button>
+            </StackPanel>
 
-        <GroupBox Grid.Row="2" Header="Saved">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <Button Grid.Column="2" HorizontalAlignment="Right">Restore All</Button>
+        </Grid>
 
-                <Label Grid.Row="0" Grid.Column="0">HTTP:</Label>
+        <GroupBox Grid.Row="2" Header="Rules">
+            <ListBox>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                <Label Grid.Row="1" Grid.Column="0">HTTPS:</Label>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Label FontWeight="Bold" Content="{Binding Name}"/>
+                                <Label Width="10"/>
+                                <Label Content="{Binding Key}"/>
+                            </StackPanel>
 
-            </Grid>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                <Label>Type: </Label>
+                                <Label Content="{Binding TypeText}"/>
+                                <Label Width="10"/>
+                                <Label FontWeight="{Binding ChangedWeight}" Foreground="{Binding ChangedColor}" Content="{Binding ChangedText}" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </GroupBox>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
+            <Button Grid.Column="0" Content="Check For Changes" Command="{Binding CheckCommand}"  HorizontalAlignment="Left"/>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button>New</Button>
+                <Button>Edit</Button>
+                <Button>View</Button>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button >Export</Button>
+                <Button >Import</Button>
+            </StackPanel>
+            
+            
+
+        </Grid>
+
+        
 
     </Grid>
 </Window>

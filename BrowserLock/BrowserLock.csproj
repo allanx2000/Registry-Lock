@@ -55,6 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Checkers\AbstractChecker.cs" />
+    <Compile Include="Checkers\BrowserChecker.cs" />
+    <Compile Include="Checkers\PathChecker.cs" />
+    <Compile Include="Checkers\RegistryUtil.cs" />
+    <Compile Include="ViewModels\ChangesViewModel.cs" />
+    <Compile Include="ViewModels\ExtensionInfoViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,13 +69,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Checker.cs" />
+    <Compile Include="CheckersRepo.cs" />
+    <Compile Include="Checkers\IChecker.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Models\ExtensionInfo.cs" />
+    <Compile Include="Models\Folder.cs" />
+    <Compile Include="Models\IData.cs" />
+    <Compile Include="Models\Value.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -95,6 +107,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Visual Studio 2013\Projects\Innouvous.Utils\Innouvous.Utils.MessageBoxFactory\Innouvous.Utils.MessageBoxFactory.csproj">
+      <Project>{6bddd1f2-3bc0-431d-923d-ce76681a3851}</Project>
+      <Name>Innouvous.Utils.MessageBoxFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Visual Studio 2013\Projects\Innouvous.Utils\Innouvous.Utils.MVVM\Innouvous.Utils.MVVM.csproj">
+      <Project>{b90d1bd6-db68-416c-9150-ba4e3c73a3f2}</Project>
+      <Name>Innouvous.Utils.MVVM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Visual Studio 2013\Projects\Innouvous.Utils\Innouvous.Utils.ResourceDictionaries\Innouvous.Utils.ResourceDictionaries.csproj">
+      <Project>{8f93514e-288c-4852-acc6-e6dfd2bc9407}</Project>
+      <Name>Innouvous.Utils.ResourceDictionaries</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
