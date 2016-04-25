@@ -32,7 +32,7 @@ namespace BrowserLock
             this.DataContext = vm;
         }
 
-        public bool Cancelled { get { return vm.Cancelled; } }
+        public WindowResult Result { get { return vm.Result; } }
 
         public RuleInfo GetRule()
         {

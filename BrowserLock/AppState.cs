@@ -14,7 +14,8 @@ namespace BrowserLock
     {
         private static List<IChecker> DefaultCheckers = new List<IChecker>()
         {
-            new BrowserChecker()
+            new BrowserChecker(),
+            new PathChecker()
         };
 
         private static readonly Dictionary<string, IChecker> Checkers = new Dictionary<string, IChecker>();

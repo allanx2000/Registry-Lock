@@ -31,7 +31,7 @@ namespace BrowserLock.ViewModels
             this.existing = existing;
             this.window = window;
 
-            Cancelled = true;
+            Result = WindowResult.Cancelled;
         }
 
         #region Checkers
@@ -67,10 +67,11 @@ namespace BrowserLock.ViewModels
 
         private void SetSelectedChecker(IChecker checker)
         {
-            if (checker == null)
-            {
-                //Set to null and hide all
-            }
+            Path = null;
+            SelectedExt = null;
+            
+            RaisePropertyChanged("PathVisible");
+            RaisePropertyChanged("ExtVisible");
         }
 
         #endregion
@@ -124,7 +125,7 @@ namespace BrowserLock.ViewModels
 
         #region Path
 
-        public Visibility PathVisibility
+        public Visibility PathVisible
         {
             get
             {
@@ -153,10 +154,9 @@ namespace BrowserLock.ViewModels
                 return vis;
             }
         }
-
-        public bool Cancelled { get; private set; }
-
-
+        
+        public WindowResult Result { get; private set; }
+        
         #region Commands
         #endregion
     }

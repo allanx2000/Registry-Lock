@@ -77,12 +77,17 @@ namespace BrowserLock.ViewModels
             var window = new EditLockWindow();
             window.ShowDialog();
 
-            if (window.Cancelled)
-                return;
-
-            var rule = window.GetRule();
-            AppState.Instance.AddNewRule(rule);
-            rules.Add(new RuleViewModel(rule));
+            switch (window.Result)
+            {
+                case WindowResult.Cancelled:
+                    return;
+                case WindowResult.Saved:
+                    var rule = window.GetRule();
+                    AppState.Instance.AddNewRule(rule);
+                    rules.Add(new RuleViewModel(rule));
+                    break;
+            }
+            
         }
 
         #endregion

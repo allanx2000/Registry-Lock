@@ -65,6 +65,7 @@
     <Compile Include="ViewModels\ChangesViewModel.cs" />
     <Compile Include="ViewModels\EditLockWindowViewModel.cs" />
     <Compile Include="ViewModels\RuleViewModel.cs" />
+    <Compile Include="ViewModels\WindowResult.cs" />
     <Page Include="EditLockWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -42,8 +42,8 @@
         <ComboBox Grid.Row="3" Grid.Column="1" Style="{StaticResource Combo}"
                   SelectedItem="{Binding SelectedExt}" ItemsSource="{Binding Extensions}" Visibility="{Binding ExtVisible}"/>
 
-        <Label Grid.Row="4" Grid.Column="0" Visibility="{Binding PathVisibility}" >Path:</Label>
-        <TextBox Grid.Row="4" Grid.Column="1" Visibility="{Binding PathVisibility}" Text="{Binding Path}" />
+        <Label Grid.Row="4" Grid.Column="0" Visibility="{Binding PathVisible}" >Path:</Label>
+        <TextBox Grid.Row="4" Grid.Column="1" Visibility="{Binding PathVisible}" Text="{Binding Path}" />
         
         <Grid Grid.Row="5" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
