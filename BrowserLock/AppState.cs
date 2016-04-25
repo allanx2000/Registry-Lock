@@ -33,16 +33,16 @@ namespace BrowserLock
             }
         }
 
-        public void SaveRules(List<RuleInfo> rules)
+        public void SaveRules()
         {
-            ExportRules(rules, RulesFile);
+            ExportRules(RulesFile);
         }
 
-        public void ExportRules(List<RuleInfo> rules, string path)
+        public void ExportRules(string path)
         {
             XmlSerializer xser = new XmlSerializer(typeof(List<RuleInfo>));
             StreamWriter sw = new StreamWriter(path);
-            xser.Serialize(sw, rules);
+            xser.Serialize(sw, Rules);
             sw.Close();
         }
 
@@ -83,6 +83,8 @@ namespace BrowserLock
                 throw new Exception("A rule by the same name already exists: " + match.Name);
 
             Rules.Add(rule);
+
+            SaveRules();
         }
 
         private RuleInfo FindExisting(RuleInfo rule)

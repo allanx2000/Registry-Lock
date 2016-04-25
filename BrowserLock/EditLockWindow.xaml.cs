@@ -36,7 +36,7 @@ namespace BrowserLock
 
         public RuleInfo GetRule()
         {
-            return vm.GetRule();
+            return vm.Rule;
         }
     }
 }

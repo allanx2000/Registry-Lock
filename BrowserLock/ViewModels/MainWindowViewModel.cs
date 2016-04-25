@@ -15,7 +15,9 @@ namespace BrowserLock.ViewModels
     class MainWindowViewModel : ViewModel
     {
         private ObservableCollection<RuleViewModel> rules = new ObservableCollection<RuleViewModel>();
-        private ObservableCollection<ChangesViewModel> changes = new ObservableCollection<ChangesViewModel>();
+
+        //Not sure if need different
+        private ObservableCollection<RuleViewModel> changes = new ObservableCollection<RuleViewModel>();
 
         private CollectionViewSource rulesView, changesView;
 
@@ -91,7 +93,23 @@ namespace BrowserLock.ViewModels
         {
             get { return changesView.View; }
         }
-        
+
+        private RuleViewModel selectedChange;
+        public RuleViewModel SelectedChange
+        {
+            get { return selectedChange; }
+            set
+            {
+                selectedChange = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged("ChangeSelected");
+            }
+        }
+
+        public bool ChangeSelected
+        {
+            get { return SelectedChange != null; }
+        }
         #endregion
     }
 }

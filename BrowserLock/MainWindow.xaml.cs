@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BrowserLock.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +21,15 @@ namespace BrowserLock
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly MainWindowViewModel vm;
         public MainWindow()
         {
             InitializeComponent();
 
-            AppState.Instance.Test();
+            vm = new MainWindowViewModel();
+            this.DataContext = vm;
+
+            //AppState.Instance.Test();
         }
     }
 }

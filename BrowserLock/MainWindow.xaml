@@ -80,7 +80,7 @@
                     HorizontalAlignment="Left"/>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button IsEnabled="{Binding RuleSelected}" Command="{Binding NewRuleCommand}">New</Button>
+                <Button Command="{Binding NewRuleCommand}">New</Button>
                 <Button IsEnabled="{Binding RuleSelected}" Command="{Binding EditRuleCommand}">Edit</Button>
                 <Button IsEnabled="{Binding RuleSelected}" Command="{Binding ViewRuleDataCommand}">View</Button>
             </StackPanel>
