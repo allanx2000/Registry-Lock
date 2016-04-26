@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChangeChecker.cs" />
     <Compile Include="Checkers\AbstractChecker.cs" />
     <Compile Include="Checkers\BrowserChecker.cs" />
     <Compile Include="Checkers\PathChecker.cs" />

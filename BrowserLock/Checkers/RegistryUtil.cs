@@ -114,5 +114,10 @@ namespace BrowserLock.Checkers
                 return false;
             }
         }
+
+        public static void Restore(RuleInfo rule)
+        {
+            
+        }
     }
 }

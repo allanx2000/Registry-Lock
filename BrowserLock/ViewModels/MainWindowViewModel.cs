@@ -1,4 +1,5 @@
-﻿using Innouvous.Utils.MVVM;
+﻿using Innouvous.Utils;
+using Innouvous.Utils.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,6 +39,15 @@ namespace BrowserLock.ViewModels
             changesView.Source = changes;
             changesView.SortDescriptions.Add(sortName);
 
+            ChangeChecker.SetRulesSource(rules, UpdateChanges);
+        }
+
+        private void UpdateChanges(List<RuleViewModel> changed)
+        {
+            changes.Clear();
+
+            foreach (var i in changed)
+                changes.Add(i);
         }
 
         #region Rules
@@ -115,6 +125,29 @@ namespace BrowserLock.ViewModels
         {
             get { return SelectedChange != null; }
         }
+        #endregion
+
+        #region Commands
+        public ICommand CheckChangesCommand
+        {
+            get
+            {
+                return new CommandHelper(CheckChanges);
+            }
+        }
+
+        private void CheckChanges()
+        {
+            try
+            {
+                ChangeChecker.CheckForChanges(false);
+            }
+            catch (Exception e)
+            {
+                MessageBoxFactory.ShowError(e);
+            }
+        }
+
         #endregion
     }
 }

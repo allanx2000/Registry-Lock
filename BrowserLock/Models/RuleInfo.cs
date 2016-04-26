@@ -91,5 +91,47 @@ namespace BrowserLock.Models
             : this(checkerId, name, new List<IData>() { folder })
         {
         }
+
+        public bool IsEqual(RuleInfo other)
+        {
+            var hc1 = this.GetHashCode2();
+            var hc2 = other.GetHashCode2();
+            return this.CheckerId != other.CheckerId
+            && hc1 == hc2;
+
+        }
+
+        private int GetHashCode2()
+        {
+            int ctr = 0;
+
+            foreach (var c in Data)
+            {
+                ctr += c.GetHashCode();
+            }
+
+            return ctr;
+        }
+
+        public override int GetHashCode()
+        {
+            int ctr = CheckerId.GetHashCode();
+
+            foreach (IData data in Data)
+            {
+                ctr += data.GetHashCode();
+            }
+
+            return ctr;
+        }
+
+        public override bool Equals(object obj)
+        {
+            RuleInfo other = obj as RuleInfo;
+            if (other == null || this.CheckerId != other.CheckerId)
+                return false;
+            else
+                return AppState.ChildrenEqual(this.Data, other.Data);
+        }
     }
 }

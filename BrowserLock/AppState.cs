@@ -15,6 +15,45 @@ namespace BrowserLock
     public class AppState
     {
         public const string DataClassType = "ClassType";
+
+        public static bool ChildrenEqual(List<IData> list1, List<IData> list2)
+        {
+            if ((list1 == null && list2!= null)
+                || (list1 != null && list2 == null))
+                return false;
+            else if (list1 == null && list2 == null)
+                return true;
+
+            var sorted1 = list1.OrderBy(x => x.Name).ToList();
+            var sorted2 = list2.OrderBy(x => x.Name).ToList();
+
+            if (sorted1.Count != sorted2.Count)
+                return false;
+
+            for (int i = 0; i < sorted1.Count; i++)
+            {
+                Folder folder1 = sorted1[i] as Folder;
+                Folder folder2 = sorted2[i] as Folder;
+
+                if (folder1 != null && folder2 != null)
+                {
+                    if (folder1.Name != folder2.Name)
+                        return false;
+                    else return ChildrenEqual(folder1.Children, folder2.Children);
+                }
+                else if (folder1 == null && folder2 != null)
+                    return false;
+                else if (folder1 != null && folder2 == null)
+                    return false;
+                //IsValue
+                else if (sorted1[i].GetHashCode() != sorted2[i].GetHashCode())
+                    return false;
+            }
+
+            return true;
+
+        }
+
         public static List<IData> DeserializeIData(JToken array)
         {
             List<IData> data = new List<IData>();
@@ -37,6 +76,10 @@ namespace BrowserLock
         };
 
         private static readonly Dictionary<string, IChecker> Checkers = new Dictionary<string, IChecker>();
+        public IChecker GetChecker(string key)
+        {
+            return Checkers[key];
+        }
 
         public static readonly AppState Instance = new AppState();
 
